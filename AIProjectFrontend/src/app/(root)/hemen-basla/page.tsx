@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import { Kaushan_Script } from "next/font/google";
 import { redirect } from "next/navigation";
+import { Input } from "@/components/ui/input";
 
 const kaushan = Kaushan_Script({
   subsets: ["latin"],
@@ -84,8 +85,8 @@ export default function HemenBasla() {
           skills: [],
           summary: "",
         });
-        redirect('/admin/interview');
         setStep(1);
+        redirect("/admin/interview");
       } else {
         alert("❌ Veri kaydedilirken hata oluştu!");
       }
@@ -102,7 +103,7 @@ export default function HemenBasla() {
           <div className="flex flex-col items-center w-full">
             <div className="w-full max-w-3xl space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
+                <Input
                   type="text"
                   name="name"
                   required
@@ -111,7 +112,7 @@ export default function HemenBasla() {
                   onChange={handleChange}
                   className="border border-gray-400/40 bg-transparent rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-black/60"
                 />
-                <input
+                <Input
                   type="email"
                   name="email"
                   required
@@ -121,7 +122,7 @@ export default function HemenBasla() {
                   className="border border-gray-400/40 bg-transparent rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-black/60"
                 />
               </div>
-              <input
+              <Input
                 type="text"
                 name="job"
                 required
@@ -139,7 +140,7 @@ export default function HemenBasla() {
           <div className="flex flex-col items-center w-full">
             <div className="w-full max-w-3xl space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
+                <Input
                   type="text"
                   name="targetArea"
                   placeholder="Yazılım Geliştirme"
@@ -147,7 +148,7 @@ export default function HemenBasla() {
                   onChange={handleChange}
                   className="border border-gray-400/40 bg-transparent rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-black/60"
                 />
-                <input
+                <Input
                   type="text"
                   name="targetPozision"
                   placeholder="Hedef Pozisyon"
@@ -156,7 +157,7 @@ export default function HemenBasla() {
                   className="border border-gray-400/40 bg-transparent rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-black/60"
                 />
               </div>
-              <input
+              <Input
                 type="text"
                 name="companyType"
                 placeholder="Şirket Türü"
@@ -173,7 +174,7 @@ export default function HemenBasla() {
           <div className="flex flex-col items-center w-full">
             <div className="w-full max-w-3xl space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
+                <Input
                   type="text"
                   name="educationLevel"
                   placeholder="Eğitim Seviyesi"
@@ -181,7 +182,7 @@ export default function HemenBasla() {
                   onChange={handleChange}
                   className="border border-gray-400/40 bg-transparent rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-black/60"
                 />
-                <input
+                <Input
                   type="text"
                   name="section"
                   placeholder="Bölüm"
@@ -190,7 +191,7 @@ export default function HemenBasla() {
                   className="border border-gray-400/40 bg-transparent rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-black/60"
                 />
               </div>
-              <input
+              <Input
                 type="text"
                 name="experienceTime"
                 placeholder="Deneyim Süresi"
@@ -198,7 +199,7 @@ export default function HemenBasla() {
                 onChange={handleChange}
                 className="border border-gray-400/40 bg-transparent rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-black/60"
               />
-              <input
+              <Input
                 type="text"
                 name="department"
                 placeholder="Pozisyon"
@@ -245,7 +246,7 @@ export default function HemenBasla() {
                     : "border-gray-400/40 hover:border-black/60"
                 }`}
               >
-                <input
+                <Input
                   type="checkbox"
                   checked={formData.skills.includes(skill)}
                   onChange={() => handleSkillToggle(skill)}

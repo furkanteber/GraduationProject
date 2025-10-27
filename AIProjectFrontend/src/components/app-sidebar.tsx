@@ -43,37 +43,37 @@ const data = {
   navMain: [
     {
       title: "Ana Sayfa",
-      url: "/dashboard",
+      url: "/admin/dashboard",
       icon: IconDashboard,
     },
     {
       title: "Analizler",
-      url: "/analyses",
+      url: "/admin/analyses",
       icon: IconListDetails,
     },
     {
       title: "Notlarım",
-      url: "/notes",
+      url: "/admin/notes",
       icon: IconNotes,
     },
     {
       title: "Geçmiş Mülakatlar",
-      url: "/pastinterviews",
+      url: "/admin/pastinterviews",
       icon: IconFolder,
     },
     {
       title: "Yardım & Destek",
-      url: "/help",
+      url: "/admin/help",
       icon: IconHelp,
     },
     {
       title: "İpuçları & Eğitim",
-      url: "/hints-education",
+      url: "/admin/hints-education",
       icon: IconAi,
     },
     {
       title: "Diğer Adaylar",
-      url: "/other-candidates",
+      url: "/admin/other-candidates",
       icon: IconUsers,
     },  
   ],
@@ -82,45 +82,45 @@ const data = {
       title: "İpuçları & Eğitim",
       icon: IconCamera,
       isActive: true,
-      url: "#",
+      url: "/admin#",
       items: [
         {
           title: "Active Proposals",
-          url: "#",
+          url: "/admin#",
         },
         {
           title: "Archived",
-          url: "#",
+          url: "/admin#",
         },
       ],
     },
     {
       title: "Proposal",
       icon: IconFileDescription,
-      url: "#",
+      url: "/admin#",
       items: [
         {
           title: "Active Proposals",
-          url: "#",
+          url: "/admin#",
         },
         {
           title: "Archived",
-          url: "#",
+          url: "/admin#",
         },
       ],
     },
     {
       title: "Prompts",
       icon: IconFileAi,
-      url: "#",
+      url: "/admin#",
       items: [
         {
           title: "Active Proposals",
-          url: "#",
+          url: "/admin#",
         },
         {
           title: "Archived",
-          url: "#",
+          url: "/admin#",
         },
       ],
     },
@@ -128,34 +128,34 @@ const data = {
   navSecondary: [
     {
       title: "Ayarlar",
-      url: "/settings",
+      url: "/admin/settings",
       icon: IconSettings,
     },
     {
       title: "Get Help",
-      url: "#",
+      url: "/admin#",
       icon: IconHelp,
     },
     {
       title: "Search",
-      url: "#",
+      url: "/admin#",
       icon: IconSearch,
     },
   ],
   documents: [
     {
       name: "Data Library",
-      url: "#",
+      url: "/admin#",
       icon: IconDatabase,
     },
     {
       name: "Reports",
-      url: "#",
+      url: "/admin#",
       icon: IconReport,
     },
     {
       name: "Word Assistant",
-      url: "#",
+      url: "/admin#",
       icon: IconFileWord,
     },
   ],
@@ -171,7 +171,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <Link href="/">
+              <Link href="/admin">
                 <IconInnerShadowTop className="!size-5" />
                 <span className="text-base font-semibold">TeberSoft</span>
               </Link>

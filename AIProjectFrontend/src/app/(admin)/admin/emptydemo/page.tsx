@@ -27,7 +27,7 @@ export default function EmptyDemo() {
       </EmptyHeader>
       <EmptyContent>
         <div className="flex gap-2">
-         <Link href={"/interview"}>
+         <Link href={"/admin/interview"}>
          <Button>Yeni Mülakat</Button>
          </Link> 
           {/* <Button variant="outline"></Button> */}

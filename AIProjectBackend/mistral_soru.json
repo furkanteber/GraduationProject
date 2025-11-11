@@ -1,0 +1,18 @@
+[
+    {
+        "topic": "React",
+        "question": "Örnek:\n     Bir RESTful API'nin GET isteğini nasıl yapabilirim?",
+        "answer": "```javascript\n    import axios from \"axios\";\n    const getData = async () => {\n      try {\n        const response = await axios.get(\"https://api.example.com/data\");\n        return response.data;\n      } catch (error) {\n        console.log(error);\n      }\n    };\n    // İstek yerine useEffect veya dispatch action olabilir.\n    // İsteğe bağlı veri state depolayabilirsin.\n    ```\n\n    ### Soru: Nasıl Reactda bir API isteği gerçekleştirilir?",
+        "metadata": {
+            "role": "API istekleri",
+            "level": "Orta",
+            "company_size": "Orta ölçekli şirket",
+            "question_type": "API istekleri",
+            "expected_answer_type": "Kod örneği",
+            "experience_years": "1-2",
+            "framework_version": "react 19+",
+            "interview_style": "Teknik bilgi",
+            "created_at": "2025-11-11T16:05:31.824313"
+        }
+    }
+]

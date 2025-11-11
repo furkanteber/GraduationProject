@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import { Kaushan_Script } from "next/font/google";
 import { redirect } from "next/navigation";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 const kaushan = Kaushan_Script({
   subsets: ["latin"],
@@ -88,11 +89,11 @@ export default function HemenBasla() {
         setStep(1);
         redirect("/admin/interview");
       } else {
-        alert("❌ Veri kaydedilirken hata oluştu!");
+        toast.error(" Veri kaydedilirken hata oluştu!");
       }
     } catch (error) {
       console.error(error);
-      alert("Sunucu hatası!");
+      toast.info("Sunucu hatası!");
     }
   };
 

@@ -1,6 +1,7 @@
 import Navbar from "@/components/ui-navbar";
 import "../globals.css";
 import { ReactNode } from "react";
+import { Toaster } from "sonner";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -10,6 +11,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                    text-gray-900 font-sans">
         <Navbar />
         <main>{children}</main>
+         <Toaster position="top-center"/>
       </body>
     </html>
   );

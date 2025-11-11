@@ -1,4 +1,3 @@
-// src/models/FormData.ts
 import mongoose, { Schema, Document, models } from "mongoose";
 
 export interface IFormData extends Document {

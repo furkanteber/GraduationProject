@@ -3,3 +3,4 @@ venv/
 env/
 .env/
 ENV/
+AIProjectBackend/mistral-7b-4bit-quantized/

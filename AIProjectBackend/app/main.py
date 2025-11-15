@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import json
-import os
+
+# router importları
+from app.routers.audio_stream import audio_router
+from app.routers.video_stream import video_router
+from app.routers.finalize import finalize_router
 
 app = FastAPI()
 
@@ -13,24 +16,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-DATA_FILE = "mistral_soru.json"
+# routerları ekliyoruz
+app.include_router(audio_router)
+app.include_router(video_router)
+app.include_router(finalize_router)
 
-@app.get("/question")
-def get_question():
-    """Son kaydedilen soruyu getirir"""
-    if not os.path.exists(DATA_FILE):
-        return {"error": "Dosya bulunamadı"}
-
-    with open(DATA_FILE, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    if isinstance(data, list) and len(data) > 0:
-        last = data[-1]
-    else:
-        last = data
-
-    return {
-        "topic": last.get("topic", ""),
-        "question": last.get("question", ""),
-        "answer": last.get("answer", "")
-    }
+@app.get("/")
+def root():
+    return {"status": "running"}

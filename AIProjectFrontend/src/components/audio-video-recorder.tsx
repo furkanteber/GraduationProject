@@ -15,25 +15,31 @@ import { Mic, Camera, Square } from "lucide-react";
 export default function AudioVideoRecorder() {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [result, setResult] = useState<any>(null);
+  const [isRecording, setIsRecording] = useState(false);
 
-  const { isRecording, start: startAudio, stop: stopAudio } =
-    useAudioStreamer(sessionId);
-
-  const { videoRef, isStreaming, start: startVideo, stop: stopVideo } =
-    useVideoStreamer(sessionId);
+  const { start: startAudio, stop: stopAudio } = useAudioStreamer();
+  const { videoRef, start: startVideo, stop: stopVideo } = useVideoStreamer();
 
   const startAll = () => {
-  if (!sessionId) {
     const id = createSessionId();
     setSessionId(id);
-  }
-  startAudio();
-  startVideo();
+
+    // Başlangıç için küçük delay
+    setTimeout(() => {
+      startAudio(id);
+      startVideo(id);
+      setIsRecording(true);
+    }, 80);
   };
 
   const stopAll = async () => {
+    setIsRecording(false);
+
     stopAudio();
     stopVideo();
+
+    // Son chunk’ın backend’e ulaşması için
+    await new Promise((res) => setTimeout(res, 300));
 
     if (!sessionId) return;
 
@@ -80,25 +86,24 @@ export default function AudioVideoRecorder() {
           {isRecording ? "Kayıt Devam Ediyor..." : "Hazır"}
         </Badge>
 
-       {result && (
-  <div className="p-3 rounded-md border bg-muted">
-    <p>
-      Final Ses Skoru:{" "}
-      <b>{Number(result.audio_avg ?? 0).toFixed(2)}</b>
-    </p>
+        {result && (
+          <div className="p-3 rounded-md border bg-muted">
+            <p>
+              Final Ses Skoru:{" "}
+              <b>{Number(result.audio_avg ?? 0).toFixed(4)}</b>
+            </p>
 
-    <p>
-      Final Video Skoru:{" "}
-      <b>{Number(result.video_score ?? 0).toFixed(2)}</b>
-    </p>
+            <p>
+              Final Video Skoru:{" "}
+              <b>{Number(result.video_score ?? 0).toFixed(2)}</b>
+            </p>
 
-    <p>
-      Genel Skor:{" "}
-      <b>{Number(result.final_score ?? 0).toFixed(2)}</b>
-    </p>
-  </div>
-)}
-
+            <p>
+              Genel Skor:{" "}
+              <b>{Number(result.final_score ?? 0).toFixed(2)}</b>
+            </p>
+          </div>
+        )}
       </CardContent>
     </Card>
   );

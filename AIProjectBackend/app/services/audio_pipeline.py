@@ -1,37 +1,53 @@
+import subprocess
+import tempfile
 import librosa
 import numpy as np
-import soundfile as sf
-import io
+import os
 
-TARGET_SR = 16000
+def analyze_audio_chunk(chunk_bytes: bytes):
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".webm") as f_in:
+        f_in.write(chunk_bytes)
+        f_in.flush()
+        webm_path = f_in.name
 
-def analyze_audio_chunk(raw_bytes: bytes):
+    wav_path = webm_path.replace(".webm", ".wav")
 
-    # byte verisini numpy arraye çevir
+    # 2) ffmpeg dönüştürme
+    cmd = [
+        "ffmpeg",
+        "-loglevel", "error",   # gereksiz çıktı yok
+        "-y",
+        "-i", webm_path,
+        "-ac", "1",
+        "-ar", "16000",
+        wav_path
+    ]
+
+    ffmpeg_output = subprocess.getoutput(" ".join(cmd))
+    print("FFMPEG OUTPUT:", ffmpeg_output)
+
+    # 3) wav dosyası oluşmuş mu?
+    if not os.path.exists(wav_path):
+        print("WAV oluşmadı!!!")
+        return {"score": 0}
+
+    # 4) wav boş mu?
+    if os.path.getsize(wav_path) < 100:
+        print("WAV boş görünüyor.")
+        return {"score": 0}
+
+    # 5) librosa ile oku
     try:
-        y, sr = sf.read(io.BytesIO(raw_bytes))
-    except Exception:
-        return {"energy": 0.0, "rms": 0.0, "score": 0.0}
+        y, sr = librosa.load(wav_path, sr=None)
+    except Exception as e:
+        print("Librosa hata:", e)
+        return {"score": 0}
 
-    # stereo ise mono'ya indir
-    if len(y.shape) > 1:
-        y = y[:, 0]
+    if len(y) == 0:
+        print("Ses verisi boş (y=0)")
+        return {"score": 0}
 
-    # sample rate dönüştür
-    if sr != TARGET_SR:
-        y = librosa.resample(y, orig_sr=sr, target_sr=TARGET_SR)
+    rms = float(np.mean(np.abs(y)))
 
-    # RMS Enerji
-    rms = librosa.feature.rms(y=y).mean()
-
-    # toplam enerji
-    energy = float(np.sum(np.abs(y)))
-
-    # basit örnek skor
-    score = float(min(1.0, (energy + rms) / 2))
-
-    return {
-        "energy": energy,
-        "rms": float(rms),
-        "score": score
-    }
+    print("AUDIO RMS:", rms)
+    return {"score": rms}

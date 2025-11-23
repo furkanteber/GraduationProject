@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { toast } from "sonner";
 
 export function useAudioStreamer() {
   const [isRecording, setIsRecording] = useState(false);
@@ -10,44 +11,61 @@ export function useAudioStreamer() {
   const timerRef = useRef<any>(null);
 
   const start = async (sessionId: string) => {
+    console.log("[audio] start called", sessionId);
     sessionIdRef.current = sessionId;
 
-    const stream = await navigator.mediaDevices.getUserMedia({
-      audio: true,
-    });
-
-    const recorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
-
-    // Recording chunk
-    recorder.ondataavailable = (e) => {
-      if (e.data.size > 0) chunksRef.current.push(e.data);
-    };
-
-    recorder.onstop = async () => {
-      // Chunk'ları tam bir WebM dosyası yap
-      const completeBlob = new Blob(chunksRef.current, { type: "audio/webm" });
-      chunksRef.current = [];
-
-      const form = new FormData();
-      form.append("audio", completeBlob, "audio.webm");
-      form.append("sessionId", sessionIdRef.current!);
-
-      await fetch("http://localhost:8000/stream/audio", {
-        method: "POST",
-        body: form,
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: true,
       });
+      console.log("[audio] getUserMedia ok");
 
-      // 15 sn sonra tekrar kaydı başlat
-      if (isRecording) {
-        recorder.start();
-        scheduleStop();
-      }
-    };
+      const recorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
 
-    recorderRef.current = recorder;
-    recorder.start();
-    scheduleStop();
-    setIsRecording(true);
+      // Recording chunk
+      recorder.ondataavailable = (e) => {
+        if (e.data.size > 0) chunksRef.current.push(e.data);
+      };
+
+      recorder.onstop = async () => {
+        // Chunk'ları tam bir WebM dosyası yap
+        const completeBlob = new Blob(chunksRef.current, { type: "audio/webm" });
+        chunksRef.current = [];
+
+        const form = new FormData();
+        form.append("audio", completeBlob, "audio.webm");
+        form.append("sessionId", sessionIdRef.current!);
+
+        console.log("[audio] sending chunk", {
+          size: completeBlob.size,
+          sessionId: sessionIdRef.current,
+        });
+
+        try {
+          const res = await fetch("http://localhost:8000/stream/audio", {
+            method: "POST",
+            body: form,
+          });
+          console.log("[audio] response", res.status);
+        } catch (e) {
+          console.error("[audio] fetch error", e);
+        }
+
+        // 15 sn sonra tekrar kaydı başlat
+        if (isRecording) {
+          recorder.start();
+          scheduleStop();
+        }
+      };
+
+      recorderRef.current = recorder;
+      recorder.start();
+      scheduleStop();
+      setIsRecording(true);
+    } catch (e) {
+      console.error("[audio] getUserMedia error", e);
+      toast.error("Mikrofon başlatılamadı. Tarayıcı mikrofon izinlerini ve cihazınızı kontrol edin.");
+    }
   };
 
   const scheduleStop = () => {

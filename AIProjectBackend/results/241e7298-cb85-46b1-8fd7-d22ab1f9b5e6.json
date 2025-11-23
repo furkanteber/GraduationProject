@@ -1,0 +1,19 @@
+{
+    "sessionId": "241e7298-cb85-46b1-8fd7-d22ab1f9b5e6",
+    "created_at": "2025-11-23T16:01:04.987523Z",
+    "audio_avg": 0.0026904018595814705,
+    "video_score": 56.4008009050477,
+    "final_score": 22.561934603134834,
+    "audio_chunk_count": 1,
+    "video_frame_count": 67,
+    "question": "Yüksek trafikli bir REST API tasarlarken nelere dikkat edersin?",
+    "written_answer": "",
+    "detail": {
+        "positive_avg": 35.42041879457327,
+        "stress_avg": 64.4514338407437,
+        "focus_score": 100.0,
+        "stability_score": 75.61460077683566,
+        "audio_stability_score": 100,
+        "text": {}
+    }
+}

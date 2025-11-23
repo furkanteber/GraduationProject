@@ -32,7 +32,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import Link  from "next/link"
+import Link from "next/link"
 
 const data = {
   user: {
@@ -75,7 +75,7 @@ const data = {
       title: "Diğer Adaylar",
       url: "/admin/other-candidates",
       icon: IconUsers,
-    },  
+    },
   ],
   navClouds: [
     {
@@ -126,21 +126,6 @@ const data = {
     },
   ],
   navSecondary: [
-    {
-      title: "Ayarlar",
-      url: "/admin/settings",
-      icon: IconSettings,
-    },
-    {
-      title: "Get Help",
-      url: "/admin#",
-      icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "/admin#",
-      icon: IconSearch,
-    },
   ],
   documents: [
     {

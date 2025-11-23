@@ -1,0 +1,27 @@
+{
+    "sessionId": "54d4f9e9-0a75-4554-97ad-38f6594cd178",
+    "created_at": "2025-11-19T11:52:29.055366Z",
+    "audio_avg": 0.0024642017669975758,
+    "video_score": 99.38723787018098,
+    "final_score": 39.816568573505016,
+    "audio_chunk_count": 1,
+    "video_frame_count": 5,
+    "question": null,
+    "written_answer": null,
+    "detail": {
+        "positive_avg": 99.25673427730798,
+        "stress_avg": 0.7428626633714884,
+        "focus_score": 100.0,
+        "stability_score": 99.16558345966041,
+        "audio_stability_score": 100,
+        "text": {
+            "combined_text": "Bu dizinin betimlemesi TRT tarafından Sesli Betimleme Derneği'ne yaptırılmıştır.",
+            "num_chars": 80,
+            "num_tokens": 9,
+            "tfidf_mean": 0.31622776601683794,
+            "tfidf_dim": 10,
+            "word2vec_dim": 100,
+            "sentence_bert_dim": 512
+        }
+    }
+}

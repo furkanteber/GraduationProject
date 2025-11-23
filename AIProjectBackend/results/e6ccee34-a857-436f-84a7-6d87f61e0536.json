@@ -1,0 +1,15 @@
+{
+    "sessionId": "e6ccee34-a857-436f-84a7-6d87f61e0536",
+    "created_at": "2025-11-23T16:23:13.214173Z",
+    "audio_avg": 0.003412928432226181,
+    "video_score": 0,
+    "final_score": 0.0020477570593357085,
+    "audio_chunk_count": 1,
+    "video_frame_count": 0,
+    "question": null,
+    "written_answer": null,
+    "detail": {
+        "audio_stability_score": 100,
+        "text": {}
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "sessionId": "555e2a63-581f-44dc-9a1b-d1c44c2c408d",
+    "audio_avg": 0.0016204798594117165,
+    "video_score": 57.892279282493554,
+    "final_score": 23.26646387413323,
+    "detail": {
+        "positive_avg": 41.549030313575216,
+        "stress_avg": 58.20730556186763,
+        "focus_score": 100.0,
+        "stability_score": 64.57064134718496,
+        "audio_stability_score": 100,
+        "text": {
+            "combined_text": "Cuba mainland",
+            "num_chars": 13,
+            "num_tokens": 2,
+            "tfidf_mean": 0.7071067811865475,
+            "tfidf_dim": 2,
+            "word2vec_dim": 100,
+            "sentence_bert_dim": 512
+        }
+    }
+}

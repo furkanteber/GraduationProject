@@ -1,0 +1,27 @@
+{
+    "sessionId": "b3b7574d-3ab8-4280-9196-abeacd705d64",
+    "created_at": "2025-11-23T16:23:13.214173Z",
+    "audio_avg": 0.002647925866767764,
+    "video_score": 95.55739178544064,
+    "final_score": 38.28468525683881,
+    "audio_chunk_count": 1,
+    "video_frame_count": 10,
+    "question": "Yüksek trafikli bir REST API tasarlarken nelere dikkat edersin?",
+    "written_answer": "",
+    "detail": {
+        "positive_avg": 94.10450353332563,
+        "stress_avg": 5.895135555788874,
+        "focus_score": 100.0,
+        "stability_score": 95.4730874163409,
+        "audio_stability_score": 100,
+        "text": {
+            "combined_text": "Bu dizinin betimlemesi TRT tarafından Sesli Betimleme Derneği'ne yaptırılmıştır.",
+            "num_chars": 80,
+            "num_tokens": 9,
+            "tfidf_mean": 0.31622776601683794,
+            "tfidf_dim": 10,
+            "word2vec_dim": 100,
+            "sentence_bert_dim": 512
+        }
+    }
+}

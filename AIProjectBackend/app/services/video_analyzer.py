@@ -1,6 +1,9 @@
 import cv2
 import numpy as np
 from deepface import DeepFace
+import logging
+
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 
 def analyze_video_frame(file_bytes: bytes):
     # bytes -> numpy array
@@ -8,9 +11,18 @@ def analyze_video_frame(file_bytes: bytes):
     frame = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
 
     if frame is None:
-        return {"error": "Frame decode edilemedi."}
+        logging.error("Video frame decode edilemedi")
+        return {"error": "frame_decode_failed"}
 
     try:
+        has_face = False
+        try:
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
+            has_face = len(faces) > 0
+        except Exception as fe:
+            logging.exception("Face detection error: %s", fe)
+
         result = DeepFace.analyze(
             frame,
             actions=['emotion'],
@@ -25,8 +37,10 @@ def analyze_video_frame(file_bytes: bytes):
 
         return {
             "dominant": dominant,
-            "emotions": emotions
+            "emotions": emotions,
+            "face": has_face,
         }
 
     except Exception as e:
-        return {"error": str(e)}
+        logging.exception("DeepFace analiz hatası: %s", e)
+        return {"error": "deepface_error", "detail": str(e)}

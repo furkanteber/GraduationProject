@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { toast } from "sonner";
 
 export function useVideoStreamer() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -9,29 +10,41 @@ export function useVideoStreamer() {
   const sessionIdRef = useRef<string | null>(null);
 
   const start = async (sessionId: string) => {
+    console.log("[video] start called", sessionId);
     sessionIdRef.current = sessionId;
 
-    const stream = await navigator.mediaDevices.getUserMedia({
-      video: true,
-      audio: false,
-    });
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: false,
+      });
+      console.log("[video] getUserMedia ok");
 
-    if (videoRef.current) {
-      videoRef.current.srcObject = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+
+      // Her 1 saniyede bir frame gönder
+      intervalRef.current = setInterval(() => {
+        captureFrame();
+      }, 1000);
+
+      setIsStreaming(true);
+    } catch (e) {
+      console.error("[video] getUserMedia error", e);
+      toast.error("Kamera başlatılamadı. Tarayıcı kamera izinlerini ve cihazınızı kontrol edin.");
     }
-
-    // Her 1 saniyede bir frame gönder
-    intervalRef.current = setInterval(() => {
-      captureFrame();
-    }, 1000);
-
-    setIsStreaming(true);
   };
 
   const captureFrame = async () => {
     if (!videoRef.current || !sessionIdRef.current) return;
 
     const video = videoRef.current;
+    if (!video.videoWidth || !video.videoHeight) {
+      console.log("[video] frame skipped, video not ready");
+      return;
+    }
+
     const canvas = document.createElement("canvas");
 
     canvas.width = video.videoWidth;
@@ -46,16 +59,29 @@ export function useVideoStreamer() {
       canvas.toBlob((b) => resolve(b), "image/jpeg", 0.8)
     );
 
-    if (!blob) return;
+    if (!blob) {
+      console.log("[video] toBlob returned null");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("image", blob, "frame.jpg");
     formData.append("sessionId", sessionIdRef.current);
 
-    await fetch("http://localhost:8000/stream/video", {
-      method: "POST",
-      body: formData,
+    console.log("[video] sending frame", {
+      size: blob.size,
+      sessionId: sessionIdRef.current,
     });
+
+    try {
+      const res = await fetch("http://localhost:8000/stream/video", {
+        method: "POST",
+        body: formData,
+      });
+      console.log("[video] response", res.status);
+    } catch (e) {
+      console.error("[video] fetch error", e);
+    }
   };
 
   const stop = () => {

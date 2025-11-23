@@ -1,3 +1,9 @@
+"use client";
+
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -14,11 +20,67 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const router = useRouter()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [submitting, setSubmitting] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!email || !password) {
+      toast.error("Lütfen email ve şifre gir.")
+      return
+    }
+
+    try {
+      setSubmitting(true)
+
+      const res = await fetch("http://127.0.0.1:8000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      })
+
+      if (!res.ok) {
+        let message = "Giriş başarısız."
+        try {
+          const data = await res.json()
+          if (data?.detail) {
+            message = data.detail
+          }
+        } catch (_) { }
+        toast.error(message)
+        return
+      }
+
+      const data = await res.json()
+
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("isLoggedIn", "true")
+        window.localStorage.setItem("userEmail", data?.email ?? email)
+        if (data?.access_token) {
+          window.localStorage.setItem("access_token", data.access_token)
+        }
+      }
+
+      toast.success("Giriş başarılı, yönlendiriliyorsun...")
+      router.push("/admin/dashboard")
+    } catch (err) {
+      toast.error("Giriş sırasında bir hata oluştu.")
+      console.error(err)
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8">
+          <form className="p-6 md:p-8" onSubmit={handleSubmit}>
             <FieldGroup>
               <div className="flex flex-col items-center gap-2 text-center">
                 <h1 className="text-2xl font-bold">Tekrar Hoşgeldin</h1>
@@ -33,6 +95,8 @@ export function LoginForm({
                   type="email"
                   placeholder="m@tebersoft.com"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Field>
               <Field>
@@ -45,13 +109,21 @@ export function LoginForm({
                     Şifremi Unuttum?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </Field>
               <Field>
-                <Button type="submit">Giriş Yap</Button>
+                <Button type="submit" disabled={submitting}>
+                  {submitting ? "Giriş yapılıyor..." : "Giriş Yap"}
+                </Button>
               </Field>
               <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
-               Veya Devam et
+                Veya Devam et
               </FieldSeparator>
               <Field className="grid grid-cols-1 gap-4">
                 <Button variant="outline" type="button">

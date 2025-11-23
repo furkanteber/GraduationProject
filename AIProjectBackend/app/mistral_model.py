@@ -2,7 +2,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 import json
 from datetime import datetime
-from db.mongodb_connection import insert_documents
+from app.db.mongodb_connection import insert_documents
 
 print("Model yükleniyor...")
 model_path = "./mistral-7b-4bit-quantized"
@@ -13,13 +13,14 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.float16,
     device_map="cuda:0"
 )
+model.eval()
 print("Model yüklendi!\n")
-
+print(model.hf_device_map)
 
 def generate_question(
     topic="Python",
     level="Orta",
-    role="Backend Yazılım Mühendisi",
+    role="Yazılım Mühendisi",
     company_size="Orta ölçekli şirket",
     context="gerçek bir iş görüşmesi",
     question_type="Teknik derinlemesine",
@@ -60,32 +61,38 @@ def generate_question(
     Cevap: <örnek, mantıklı bir cevap üret>
     """
 
-    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    inputs = tokenizer(
+        prompt,
+        return_tensors="pt",
+        truncation=True,
+        max_length=512,
+    ).to(model.device)
 
     if fast_mode:
         generation_config = {
-            "max_new_tokens": 350,
+            "max_new_tokens": 160,
             "do_sample": True,
             "temperature": 0.7,
-            "top_p": 0.85,
-            "repetition_penalty": 1.15,
-            "num_return_sequences": 1
+            "top_p": 0.9,
+            "repetition_penalty": 1.1,
+            "num_return_sequences": 1,
         }
     else:
         generation_config = {
-            "max_new_tokens": 700,
+            "max_new_tokens": 256,
             "do_sample": True,
             "temperature": 0.8,
             "top_p": 0.9,
-            "repetition_penalty": 1.2,
-            "num_return_sequences": 3
+            "repetition_penalty": 1.15,
+            "num_return_sequences": 1,
         }
 
-    outputs = model.generate(
-        **inputs,
-        pad_token_id=tokenizer.eos_token_id,
-        **generation_config
-    )
+    with torch.inference_mode():
+        outputs = model.generate(
+            **inputs,
+            pad_token_id=tokenizer.eos_token_id,
+            **generation_config
+        )
 
     all_results = []
     num_sequences = generation_config["num_return_sequences"]
@@ -126,3 +133,6 @@ def generate_question(
     insert_documents("premadeQuestions", all_results)
 
     return all_results
+
+def analyze_and_feedback():
+

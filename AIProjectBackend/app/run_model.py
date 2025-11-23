@@ -1,19 +1,16 @@
-from mistral_model import generate_question
+from app.microsoft_model import generate_interview_question
 
 if __name__ == "__main__":
-    results = generate_question(
-        topic="React",
-        level="Orta",
-        role="API istekleri",
-        framework_version="react 19+",
-        question_type="API istekleri",
-        expected_answer_type="Kod örneği",
-        experience_years="1-2",
-        interview_style="Teknik bilgi",
-        fast_mode=True
+    result = generate_interview_question(
+        topic="Python",
+        level="Hard",
+        role="Machine Learning",
+        question_type="Data Science",
+        expected_answer_type="Code ex.",
+        interview_style="technical information",
     )
 
-    for i, r in enumerate(results, start=1):
-        print(f"\n--- Soru {i} ---")
-        print(f"Soru: {r['question']}")
-        print(f"Cevap: {r['answer']}")
+    print("\n--- Üretilen Soru ---")
+    print(f"Konu: {result.get('topic')}")
+    print(f"Soru (TR): {result.get('turkish_question')}")
+    print(f"Soru (EN): {result.get('english_question')}")

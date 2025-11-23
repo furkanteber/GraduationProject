@@ -1,1 +1,5 @@
 AIProjectBackend/mistral-7b-4bit-quantized
+AIProjectBackend/phi3-gguf
+AIProjectBackend/qwen-gguf
+AIProjectBackend/qwen-gguf/qwen2.5-0.5b-instruct-q4_0.gguf
+AIProjectBackend/phi3-gguf/Phi-3-mini-4k-instruct-q4_K_M.gguf

@@ -1,0 +1,188 @@
+{
+    "sessionId": "895268da-e06f-4f21-bd1d-7cb8c05c135a",
+    "created_at": "2025-11-23T18:15:30.011616Z",
+    "audio_avg": 0.0020426560658961535,
+    "video_score": 66.07692826635692,
+    "final_score": 26.540450120540516,
+    "audio_chunk_count": 1,
+    "video_frame_count": 104,
+    "question": "Yüksek trafikli bir REST API tasarlarken nelere dikkat edersin?",
+    "written_answer": "",
+    "detail": {
+        "positive_avg": 53.131489893237955,
+        "stress_avg": 46.41813695035853,
+        "focus_score": 100.0,
+        "stability_score": 70.53979849566714,
+        "audio_stability_score": 100,
+        "text": {
+            "combined_text": "İ底çtaесяt pvi",
+            "num_chars": 13,
+            "num_tokens": 2,
+            "tfidf_mean": 0.7071067811865475,
+            "tfidf_dim": 2,
+            "word2vec_dim": 100,
+            "sentence_bert_dim": 512
+        }
+    },
+    "questions": [
+        {
+            "index": 0,
+            "topic": "Backend Mülakatı",
+            "question": "Yüksek trafikli bir REST API tasarlarken nelere dikkat edersin?",
+            "answer": "",
+            "duration_seconds": 23,
+            "saved_at": "2025-11-23T18:14:07.070717Z",
+            "metadata": {
+                "questionIndex": 0,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Web geliştirme, Mobil uygulama Geliştirme ",
+                    "skills": "React, Flutter , MongoDb, Firebase",
+                    "experience": "3 yıllık mobil uygulama geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Frontend Developer",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 23
+            }
+        },
+        {
+            "index": 1,
+            "topic": "Backend Mülakatı",
+            "question": "Bir servisi monolith'ten mikro servislere ayırma kararı alırken hangi kriterlere bakarsın?",
+            "answer": "",
+            "duration_seconds": 18,
+            "saved_at": "2025-11-23T18:14:25.657434Z",
+            "metadata": {
+                "questionIndex": 1,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Web geliştirme, Mobil uygulama Geliştirme ",
+                    "skills": "React, Flutter , MongoDb, Firebase",
+                    "experience": "3 yıllık mobil uygulama geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Frontend Developer",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 18
+            }
+        },
+        {
+            "index": 2,
+            "topic": "Backend Mülakatı",
+            "question": "Veritabanı tasarımında normalizasyon ve denormalizasyon kararlarını nasıl verirsin?",
+            "answer": "",
+            "duration_seconds": 23,
+            "saved_at": "2025-11-23T18:14:49.257314Z",
+            "metadata": {
+                "questionIndex": 2,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Web geliştirme, Mobil uygulama Geliştirme ",
+                    "skills": "React, Flutter , MongoDb, Firebase",
+                    "experience": "3 yıllık mobil uygulama geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Frontend Developer",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 23
+            }
+        },
+        {
+            "index": 3,
+            "topic": "Backend",
+            "question": "Mikro servisler arasında güvenilir veri iletimini sağlamak amacıyla, mesaj kuyrukları ve idempotent işlemler de dahil olmak üzere, hata toleranslı bir mesajlaşma sistemini nasıl tasarlar ve hayata geçirirsiniz; ayrıca bunu Java gibi bir programlama dilinde Apache Kafka gibi popüler bir mesajlaşma sistemi kullanarak gösteren bir kod örneği paylaşabilir misiniz?",
+            "answer": "",
+            "duration_seconds": 24,
+            "saved_at": "2025-11-23T18:15:13.493895Z",
+            "metadata": {
+                "level": "Orta",
+                "generated_at": "2025-11-23T18:13:42.300807",
+                "questionIndex": 3,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Web geliştirme, Mobil uygulama Geliştirme ",
+                    "skills": "React, Flutter , MongoDb, Firebase",
+                    "experience": "3 yıllık mobil uygulama geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Frontend Developer",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 24
+            }
+        },
+        {
+            "index": 4,
+            "topic": "Backend",
+            "question": "Kullanıcı taleplerinde ani bir artış yaşanması gereken bir senaryoyu ele alarak, arka uç sisteminizin ölçeklenebilirliğini ve yüksek erişilebilirliğini sağlamak için hangi kodlama kalıbını veya tasarım ilkesini uygulardınız? Lütfen bu kalıbın veya ilkenin uygulamasını gösteren pratik bir örnek veya kod parçacığı sunun.",
+            "answer": "",
+            "duration_seconds": 16,
+            "saved_at": "2025-11-23T18:15:29.684296Z",
+            "metadata": {
+                "level": "Orta",
+                "generated_at": "2025-11-23T18:13:49.877432",
+                "questionIndex": 4,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Web geliştirme, Mobil uygulama Geliştirme ",
+                    "skills": "React, Flutter , MongoDb, Firebase",
+                    "experience": "3 yıllık mobil uygulama geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Frontend Developer",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 16
+            }
+        }
+    ]
+}

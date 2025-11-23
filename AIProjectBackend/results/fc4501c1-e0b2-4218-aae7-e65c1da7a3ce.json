@@ -1,0 +1,198 @@
+{
+    "sessionId": "fc4501c1-e0b2-4218-aae7-e65c1da7a3ce",
+    "created_at": "2025-11-23T18:29:37.918690Z",
+    "audio_avg": 0.011263592168688774,
+    "video_score": 65.84653099896656,
+    "final_score": 26.406725135004717,
+    "audio_chunk_count": 1,
+    "video_frame_count": 62,
+    "question": "React ile büyük ölçekli bir uygulamada state yönetimini nasıl kurgularsın?",
+    "written_answer": "",
+    "detail": {
+        "positive_avg": 57.44129399112177,
+        "stress_avg": 41.11613738840898,
+        "focus_score": 82.25806451612904,
+        "stability_score": 73.20813988486913,
+        "audio_stability_score": 100,
+        "text": {
+            "combined_text": "Buözi düşündü. Bu çok lastedim. bir ş ook bir 풀, paritchenning compilesi mutf postached",
+            "num_chars": 87,
+            "num_tokens": 14,
+            "tfidf_mean": 0.2915577184499175,
+            "tfidf_dim": 11,
+            "word2vec_dim": 100,
+            "sentence_bert_dim": 512
+        }
+    },
+    "questions": [
+        {
+            "index": 0,
+            "topic": "Frontend Mülakatı",
+            "question": "React ile büyük ölçekli bir uygulamada state yönetimini nasıl kurgularsın?",
+            "answer": "",
+            "duration_seconds": 26,
+            "saved_at": "2025-11-23T18:29:01.922052Z",
+            "metadata": {
+                "questionIndex": 0,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Veri Bilimi, Makine Öğrenmesi ",
+                    "skills": "Python , Numpy , Mathplot",
+                    "experience": "3 yıllık kıdemli geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Veri Mühendisi",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 26,
+                "questionScore": 10.83
+            },
+            "score": 10.83
+        },
+        {
+            "index": 0,
+            "topic": "Frontend Mülakatı",
+            "question": "React ile büyük ölçekli bir uygulamada state yönetimini nasıl kurgularsın?",
+            "answer": "",
+            "duration_seconds": 24,
+            "saved_at": "2025-11-23T18:29:02.565259Z",
+            "metadata": {
+                "questionIndex": 0,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Veri Bilimi, Makine Öğrenmesi ",
+                    "skills": "Python , Numpy , Mathplot",
+                    "experience": "3 yıllık kıdemli geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Veri Mühendisi",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 24,
+                "questionScore": 10.0
+            },
+            "score": 10.0
+        },
+        {
+            "index": 2,
+            "topic": "Frontend Mülakatı",
+            "question": "CSS tarafında ölçeklenebilir ve yeniden kullanılabilir bir yapı kurmak için hangi yaklaşımı tercih edersin?",
+            "answer": "",
+            "duration_seconds": 8,
+            "saved_at": "2025-11-23T18:29:10.792051Z",
+            "metadata": {
+                "questionIndex": 2,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Veri Bilimi, Makine Öğrenmesi ",
+                    "skills": "Python , Numpy , Mathplot",
+                    "experience": "3 yıllık kıdemli geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Veri Mühendisi",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 8,
+                "questionScore": 3.33
+            },
+            "score": 3.33
+        },
+        {
+            "index": 3,
+            "topic": "Frontend",
+            "question": "Flexbox düzeni kullanan duyarlı bir navigasyon çubuğu bileşeni üzerinden, mobil görünümde hamburger menü ile tam ekran navigasyon menüsü arasında geçiş yapacak bir açma/kapama (toggle) işlevselliğini nasıl hayata geçirirsiniz; en iyi erişilebilirlik ve kullanılabilirliği sağlayarak, gerekli CSS geçişlerini ve tıklama olayını yönetecek JavaScript uygulamasını içeren bu süreci gösterebilir misiniz?",
+            "answer": "",
+            "duration_seconds": 16,
+            "saved_at": "2025-11-23T18:29:27.128664Z",
+            "metadata": {
+                "level": "Orta",
+                "generated_at": "2025-11-23T18:28:32.630280",
+                "questionIndex": 3,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Veri Bilimi, Makine Öğrenmesi ",
+                    "skills": "Python , Numpy , Mathplot",
+                    "experience": "3 yıllık kıdemli geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Veri Mühendisi",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 16,
+                "questionScore": 6.67
+            },
+            "score": 6.67
+        },
+        {
+            "index": 4,
+            "topic": "Frontend",
+            "question": "Bir performans testi sırasında, yüksek çözünürlüklü bir ekrana sahip cihazlarda bir web sayfasının düzeninin (layout) bozulduğunu fark ediyorsunuz. Bir ön yüz geliştiricisi olarak, farklı çözünürlüklere sahip çeşitli cihazlarda tutarlı bir düzen sağlamak için bu sorunu nasıl ele alırsınız?",
+            "answer": "",
+            "duration_seconds": 10,
+            "saved_at": "2025-11-23T18:29:37.593849Z",
+            "metadata": {
+                "level": "Orta",
+                "generated_at": "2025-11-23T18:28:43.588378",
+                "questionIndex": 4,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Veri Bilimi, Makine Öğrenmesi ",
+                    "skills": "Python , Numpy , Mathplot",
+                    "experience": "3 yıllık kıdemli geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Veri Mühendisi",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 10,
+                "questionScore": 4.17
+            },
+            "score": 4.17
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "sessionId": "88d3672a-1a81-4ed0-a3d3-df3d8be65c33",
+    "created_at": "2025-11-19T11:52:07.046145Z",
+    "audio_avg": 0.002426713239401579,
+    "video_score": 85.92312412397226,
+    "final_score": 34.37070567753254,
+    "audio_chunk_count": 1,
+    "video_frame_count": 13,
+    "question": null,
+    "written_answer": null,
+    "detail": {
+        "positive_avg": 83.66787152281275,
+        "stress_avg": 16.31425866097785,
+        "focus_score": 100.0,
+        "stability_score": 78.59413623521368,
+        "audio_stability_score": 100,
+        "text": {}
+    }
+}

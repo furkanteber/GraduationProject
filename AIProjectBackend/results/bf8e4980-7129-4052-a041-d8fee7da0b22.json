@@ -1,0 +1,27 @@
+{
+    "sessionId": "bf8e4980-7129-4052-a041-d8fee7da0b22",
+    "created_at": "2025-11-19T12:34:04.276468Z",
+    "audio_avg": 0.0035416632890701294,
+    "video_score": 40.00005067381167,
+    "final_score": 16.07045028197087,
+    "audio_chunk_count": 1,
+    "video_frame_count": 11,
+    "question": null,
+    "written_answer": null,
+    "detail": {
+        "positive_avg": 0.00013268145632134461,
+        "stress_avg": 99.9998694631929,
+        "focus_score": 100.0,
+        "stability_score": 99.99985746933861,
+        "audio_stability_score": 100,
+        "text": {
+            "combined_text": "Hadi de bir改iydi olarakye kadar mı uker? Oạnh simsi Take main andamtailar. Kaviscisierung bu linear ide chilling harbiden Taiwan düş ceiling.. Nu bolagları çok Barış terms crystalon",
+            "num_chars": 181,
+            "num_tokens": 27,
+            "tfidf_mean": 0.19245008972987512,
+            "tfidf_dim": 27,
+            "word2vec_dim": 100,
+            "sentence_bert_dim": 512
+        }
+    }
+}

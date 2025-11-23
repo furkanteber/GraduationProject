@@ -29,13 +29,15 @@ async def stream_video(
     emotions_raw = analysis.get("emotions", {})
     emotions = {k: float(v) for k, v in emotions_raw.items()}
 
+    has_face = bool(analysis.get("face", False))
+
     # finalize.py şu yapıyı bekliyor:
     # {
     #   "face": bool,
     #   "emotions": {...}
     # }
     frame_info = {
-        "face": True,          # enforce_detection=False olduğu için basitçe True diyebiliriz
+        "face": has_face,
         "emotions": emotions,
     }
 

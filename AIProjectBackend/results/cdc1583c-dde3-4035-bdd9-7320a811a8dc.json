@@ -1,0 +1,198 @@
+{
+    "sessionId": "cdc1583c-dde3-4035-bdd9-7320a811a8dc",
+    "created_at": "2025-11-23T18:24:05.894927Z",
+    "audio_avg": 0.001809377921745181,
+    "video_score": 65.55491319006298,
+    "final_score": 26.28344225430424,
+    "audio_chunk_count": 1,
+    "video_frame_count": 114,
+    "question": "Kariyerin boyunca çalıştığın projelerden birinde en zorlandığın teknik problemi ve bunu nasıl çözdüğünü anlat.",
+    "written_answer": "",
+    "detail": {
+        "positive_avg": 53.056064100513794,
+        "stress_avg": 46.55176219116057,
+        "focus_score": 96.49122807017544,
+        "stability_score": 71.72297187027237,
+        "audio_stability_score": 100,
+        "text": {
+            "combined_text": "Bu dizinin betimlemesi TRT tarafından Sesli Betimleme Derneği'ne yaptırılmıştır.",
+            "num_chars": 80,
+            "num_tokens": 9,
+            "tfidf_mean": 0.31622776601683794,
+            "tfidf_dim": 10,
+            "word2vec_dim": 100,
+            "sentence_bert_dim": 512
+        }
+    },
+    "questions": [
+        {
+            "index": 0,
+            "topic": "Genel Yazılım Mülakatı",
+            "question": "Kariyerin boyunca çalıştığın projelerden birinde en zorlandığın teknik problemi ve bunu nasıl çözdüğünü anlat.",
+            "answer": "",
+            "duration_seconds": 54,
+            "saved_at": "2025-11-23T18:23:03.589972Z",
+            "metadata": {
+                "questionIndex": 0,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Veri Bilimi, Makine Öğrenmesi ",
+                    "skills": "Python , Numpy , Mathplot",
+                    "experience": "3 yıllık kıdemli geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Veri Mühendisi",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 54,
+                "questionScore": 22.5
+            },
+            "score": 22.5
+        },
+        {
+            "index": 1,
+            "topic": "Genel Yazılım Mülakatı",
+            "question": "HTTP, REST ve idempotent metotlar açısından iyi tasarlanmış bir API'nin özellikleri neler olmalıdır?",
+            "answer": "",
+            "duration_seconds": 14,
+            "saved_at": "2025-11-23T18:23:18.113225Z",
+            "metadata": {
+                "questionIndex": 1,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Veri Bilimi, Makine Öğrenmesi ",
+                    "skills": "Python , Numpy , Mathplot",
+                    "experience": "3 yıllık kıdemli geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Veri Mühendisi",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 14,
+                "questionScore": 5.83
+            },
+            "score": 5.83
+        },
+        {
+            "index": 2,
+            "topic": "Genel Yazılım Mülakatı",
+            "question": "Temiz kod yazma prensiplerinden 2-3 tanesini seçip gerçek bir örnek üzerinden açıklar mısın?",
+            "answer": "",
+            "duration_seconds": 14,
+            "saved_at": "2025-11-23T18:23:32.219138Z",
+            "metadata": {
+                "questionIndex": 2,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Veri Bilimi, Makine Öğrenmesi ",
+                    "skills": "Python , Numpy , Mathplot",
+                    "experience": "3 yıllık kıdemli geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Veri Mühendisi",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 14,
+                "questionScore": 5.83
+            },
+            "score": 5.83
+        },
+        {
+            "index": 3,
+            "topic": "Genel Yazılım",
+            "question": "Mevcut istisna işleyicileri tarafından daha önce yakalanmamış bir runtime istisnasıyla karşılaşan bir sistem senaryosunda, uygulamanın dayanıklılığını sağlamak için güçlü istisna işleme ve logging güvence altına almak amacıyla bir yazılım mühendisi olarak uygulayacağınız adımları ve kod örneğini açıklayabilir misiniz?",
+            "answer": "",
+            "duration_seconds": 13,
+            "saved_at": "2025-11-23T18:23:45.382504Z",
+            "metadata": {
+                "level": "Orta",
+                "generated_at": "2025-11-23T18:22:13.676575",
+                "questionIndex": 3,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Veri Bilimi, Makine Öğrenmesi ",
+                    "skills": "Python , Numpy , Mathplot",
+                    "experience": "3 yıllık kıdemli geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Veri Mühendisi",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 13,
+                "questionScore": 5.42
+            },
+            "score": 5.42
+        },
+        {
+            "index": 4,
+            "topic": "Genel Yazılım",
+            "question": "Mevcut kod tabanımızın sürdürülebilirliğini ve genişletilebilirliğini artırmak amacıyla, Strategy Pattern gibi nesne yönelimli bir tasarım desenini en iyi yazılım mühendisliği pratiklerine uygun şekilde entegre etmeye nasıl yaklaşırsınız; bu bağlamda mevcut kodu değerlendirme, desenin uygulanacağı uygun senaryoları seçme ve temiz kodlama prensiplerine uyarak bir metot veya sınıfı yeniden düzenleme (refactoring) sürecinizi detaylandırarak, bu yeniden düzenlemeyi gösteren bir kod örneği sunar mısınız?",
+            "answer": "sunamam",
+            "duration_seconds": 20,
+            "saved_at": "2025-11-23T18:24:05.535382Z",
+            "metadata": {
+                "level": "Orta",
+                "generated_at": "2025-11-23T18:22:36.098009",
+                "questionIndex": 4,
+                "totalQuestions": 5,
+                "profile": {
+                    "interests": "Veri Bilimi, Makine Öğrenmesi ",
+                    "skills": "Python , Numpy , Mathplot",
+                    "experience": "3 yıllık kıdemli geliştirici",
+                    "education": "GİBTÜ,Bilgisayar Mühendisliği ",
+                    "targetRole": "Veri Mühendisi",
+                    "companyType": "kurumsal",
+                    "customFields": [
+                        {
+                            "key": "Maaş",
+                            "value": "35000"
+                        },
+                        {
+                            "key": "Çalışma Şekli",
+                            "value": "Uzaktan"
+                        }
+                    ]
+                },
+                "durationSeconds": 20,
+                "questionScore": 9.17
+            },
+            "score": 9.17
+        }
+    ]
+}

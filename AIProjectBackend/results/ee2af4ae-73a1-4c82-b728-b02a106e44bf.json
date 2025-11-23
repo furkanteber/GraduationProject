@@ -1,0 +1,27 @@
+{
+    "sessionId": "ee2af4ae-73a1-4c82-b728-b02a106e44bf",
+    "created_at": "2025-11-19T11:53:32.982757Z",
+    "audio_avg": 0.00327726430259645,
+    "video_score": 68.54062902504026,
+    "final_score": 27.526300806484866,
+    "audio_chunk_count": 1,
+    "video_frame_count": 9,
+    "question": null,
+    "written_answer": null,
+    "detail": {
+        "positive_avg": 55.04504957231014,
+        "stress_avg": 44.93502964543748,
+        "focus_score": 100.0,
+        "stability_score": 77.54807562601854,
+        "audio_stability_score": 100,
+        "text": {
+            "combined_text": "ateşli çağırır",
+            "num_chars": 14,
+            "num_tokens": 2,
+            "tfidf_mean": 0.7071067811865475,
+            "tfidf_dim": 2,
+            "word2vec_dim": 100,
+            "sentence_bert_dim": 512
+        }
+    }
+}

@@ -24,6 +24,26 @@ def insert_documents(collection_name, documents):
         print(f"[MongoDB] ❌ Ekleme hatası: {e}")
 
 
+def get_random_premade_question(filter_query=None):
+    db = get_db()
+    if db is None:
+        print("[MongoDB] ❌ Bağlantı başarısız, soru okunamadı.")
+        return None
+    try:
+        collection = db["premadeQuestions"]
+        pipeline = []
+        if filter_query:
+            pipeline.append({"$match": filter_query})
+        pipeline.append({"$sample": {"size": 1}})
+        docs = list(collection.aggregate(pipeline))
+        if not docs:
+            return None
+        return docs[0]
+    except Exception as e:
+        print(f"[MongoDB] ❌ Soru okuma hatası: {e}")
+        return None
+
+
 def test_connection():
     try:
         client = MongoClient("mongodb://localhost:27017/")

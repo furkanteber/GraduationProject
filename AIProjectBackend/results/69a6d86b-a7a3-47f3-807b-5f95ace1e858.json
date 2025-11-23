@@ -1,0 +1,14 @@
+{
+    "sessionId": "69a6d86b-a7a3-47f3-807b-5f95ace1e858",
+    "audio_avg": 0.0005854645278304815,
+    "video_score": 79.39231315120124,
+    "final_score": 31.757276539197196,
+    "detail": {
+        "positive_avg": 71.91490657732356,
+        "stress_avg": 28.07937279343605,
+        "focus_score": 100.0,
+        "stability_score": 81.21112539479509,
+        "audio_stability_score": 100,
+        "text": {}
+    }
+}

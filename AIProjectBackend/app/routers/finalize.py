@@ -4,13 +4,14 @@ from datetime import datetime
 from fastapi import APIRouter
 from app.services.session_storage import get_session_data, clear_session
 from app.services.text_features import analyze_texts
+from app.services.media_storage import finalize_recording, get_recording_path
 from app.db.mongodb_connection import get_db
 
 finalize_router = APIRouter()
 
 RESULTS_DIR = "results"
 
-# Skorlama ağırlıkları (kolayca ayarlanabilir)
+# skorlama ağırlıkları
 AUDIO_WEIGHT = 0.6
 VIDEO_WEIGHT = 0.4
 
@@ -63,6 +64,10 @@ def finalize_session(sessionId: str):
     if not data:
         return {"error": "Session not found"}
 
+    # Ses ve video kayıtlarını dosya olarak birleştir ve kaydet
+    recording_info = finalize_recording(sessionId)
+    print(f"[finalize] Recording saved: {recording_info}")
+
     audio_chunks = data["audio"]
     video_frames = data["video"]
 
@@ -70,11 +75,12 @@ def finalize_session(sessionId: str):
     audio_count = len(audio_chunks)
     video_count = len(video_frames)
 
-    # Yazılı cevap ve soru bilgisini (varsa) answers / interviews koleksiyonundan çek
+    # yazılı cevap ve soru bilgisini answers-interviews koleksiyonundan çek
     question_text = None
     written_answer = None
     questions_detail = []
     db_for_answers = get_db()
+    preset = None
     if db_for_answers is not None:
         try:
             answer_doc = db_for_answers["answers"].find_one({"sessionId": sessionId})
@@ -88,13 +94,14 @@ def finalize_session(sessionId: str):
             interview_doc = db_for_answers["interviews"].find_one({"sessionId": sessionId})
             if interview_doc:
                 questions_detail = interview_doc.get("questions", [])
+                preset = interview_doc.get("preset")
         except Exception as e:
             print(f"[MongoDB] interviews query error: {e}")
 
     audio_values = [item["score"] for item in audio_chunks if "score" in item]
     audio_avg = sum(audio_values) / len(audio_values) if audio_values else 0.0
 
-    # Audio RMS'yi 0-100 arası bir skora normalize et (yaklaşık 0.05 RMS ~ 100 puan)
+    # audio RMSyi 0-100 arası bir skora normalize et
     if audio_avg <= 0:
         audio_score = 0.0
     else:
@@ -104,22 +111,38 @@ def finalize_session(sessionId: str):
     audio_score = float(audio_score)
     audio_score_norm = audio_score / 100.0
 
-    # Audio stabilite: ardışık skor farklarına dayalı basit metrik
+    #audio stabilite ardışık skor farklarına dayalı basit metrik
     audio_stability_values = []
     for i in range(1, len(audio_values)):
         audio_stability_values.append(abs(audio_values[i] - audio_values[i - 1]))
     audio_stability_score = 100 - (sum(audio_stability_values) / len(audio_stability_values)) if audio_stability_values else 100
 
-    # Metin skorunu yalnızca yazılı cevap üzerinden hesapla (konuşma transkriptlerini skorlamada kullanma)
+    # metin skorunu öncelikle yazılı cevap üzerinden hesapla;
+    # yazılı cevap yoksa ses transkriptlerini fallback olarak kullan.
     text_features = {}
-    if written_answer:
+    text_source = None
+
+    if written_answer and str(written_answer).strip():
+        text_source = written_answer
+    else:
+        transcripts = []
+        for item in audio_chunks:
+            if isinstance(item, dict):
+                t = str(item.get("text") or "").strip()
+                if t:
+                    transcripts.append(t)
+
+        if transcripts:
+            text_source = " ".join(transcripts)
+
+    if text_source:
         try:
-            text_features = analyze_texts([written_answer])
+            text_features = analyze_texts([text_source])
         except Exception as e:
             print(f"[text_features] analyze_texts error: {e}")
             text_features = {}
 
-    # Basit bir metin skoru: token sayısı ve tfidf_mean'den türetilen 0-100 arası değer
+    #basit bir metin skoru token sayısı ve tfidf_mean'den türetilen 0-100 arası değer
     text_score = 0.0
     if text_features:
         num_tokens = float(text_features.get("num_tokens") or 0.0)
@@ -143,10 +166,10 @@ def finalize_session(sessionId: str):
         )
 
         if text_features:
-            # Ses %30, metin %30, görüntü %40 (görüntü yoksa 0)
+            # ses %30, metin %30, görüntü %40
             final_score_norm = audio_score_norm * 0.3 + text_score_norm * 0.3 + 0.0 * 0.4
         else:
-            # Metin yoksa ses %60, görüntü %40 (görüntü yoksa 0)
+            # metin yoksa ses %60, görüntü %40
             final_score_norm = audio_score_norm * 0.6 + 0.0 * 0.4
 
         final_score = final_score_norm * 100.0
@@ -154,6 +177,7 @@ def finalize_session(sessionId: str):
         result_json = {
             "sessionId": sessionId,
             "created_at": created_at,
+            "preset": preset,
             "audio_avg": audio_avg,
             "audio_score": audio_score,
             "video_score": 0,
@@ -167,13 +191,26 @@ def finalize_session(sessionId: str):
                 "text": text_features,
             },
             "questions": questions_with_scores,
+            "recording": recording_info,
+            "simulation": {
+                "sessionId": sessionId,
+                "created_at": created_at,
+                "preset": preset,
+                "overall": {
+                    "audio_score": audio_score,
+                    "video_score": 0,
+                    "text_score": text_score,
+                    "final_score": final_score,
+                },
+                "questions": questions_with_scores,
+            },
         }
 
         path = os.path.join(RESULTS_DIR, f"{sessionId}.json")
         with open(path, "w", encoding="utf-8") as f:
             json.dump(result_json, f, ensure_ascii=False, indent=4)
 
-        # MongoDB'ye de kaydet (kopya obje ile, _id mutasyonunu response'a yansıtma)
+        # MongoDB ye de kaydet
         db = get_db()
         if db is not None:
             try:
@@ -181,7 +218,7 @@ def finalize_session(sessionId: str):
             except Exception as e:
                 print(f"[MongoDB] sessionResults insert error: {e}")
 
-            # Interviews koleksiyonunu güncelle
+            # interviews koleksiyonunu güncelle
             try:
                 scores_payload = {
                     "audio_avg": audio_avg,
@@ -200,6 +237,7 @@ def finalize_session(sessionId: str):
                             "overall_scores": scores_payload,
                             "finished_at": created_at,
                             "status": "completed",
+                            "recording": recording_info,
                         }
                     },
                     upsert=False,
@@ -234,12 +272,16 @@ def finalize_session(sessionId: str):
 
     stability_score = 100 - (sum(stability_values) / len(stability_values)) if stability_values else 100
 
-    video_score = (
-        positive_avg * VIDEO_POSITIVE_WEIGHT +
-        focus_score * VIDEO_FOCUS_WEIGHT +
-        stability_score * VIDEO_STABILITY_WEIGHT +
-        (100 - stress_avg) * VIDEO_STRESS_WEIGHT
-    )
+    # eğer hiçbir karede yüz algılanmadıysa video skoru doğrudan 0 olsun.
+    if face_detect_count == 0:
+        video_score = 0.0
+    else:
+        video_score = (
+            positive_avg * VIDEO_POSITIVE_WEIGHT +
+            focus_score * VIDEO_FOCUS_WEIGHT +
+            stability_score * VIDEO_STABILITY_WEIGHT +
+            (100 - stress_avg) * VIDEO_STRESS_WEIGHT
+        )
 
     video_score = float(video_score)
     video_score_norm = video_score / 100.0 if video_score > 0 else 0.0
@@ -266,6 +308,7 @@ def finalize_session(sessionId: str):
     result_json = {
         "sessionId": sessionId,
         "created_at": created_at,
+        "preset": preset,
         "audio_avg": audio_avg,
         "audio_score": audio_score,
         "video_score": video_score,
@@ -283,13 +326,26 @@ def finalize_session(sessionId: str):
             "text": text_features,
         },
         "questions": questions_with_scores,
+        "recording": recording_info,
+        "simulation": {
+            "sessionId": sessionId,
+            "created_at": created_at,
+            "preset": preset,
+            "overall": {
+                "audio_score": audio_score,
+                "video_score": video_score,
+                "text_score": text_score,
+                "final_score": final_score,
+            },
+            "questions": questions_with_scores,
+        },
     }
 
     path = os.path.join(RESULTS_DIR, f"{sessionId}.json")
     with open(path, "w", encoding="utf-8") as f:
         json.dump(result_json, f, ensure_ascii=False, indent=4)
 
-    # MongoDB'ye de kaydet (kopya obje ile, _id mutasyonunu response'a yansıtma)
+    # MongoDB'ye de kaydet
     db = get_db()
     if db is not None:
         try:
@@ -320,6 +376,7 @@ def finalize_session(sessionId: str):
                         "overall_scores": scores_payload,
                         "finished_at": created_at,
                         "status": "completed",
+                        "recording": recording_info,
                     }
                 },
                 upsert=False,

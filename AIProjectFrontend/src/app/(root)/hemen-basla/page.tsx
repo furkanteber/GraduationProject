@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { Kaushan_Script } from "next/font/google";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
@@ -13,6 +13,7 @@ const kaushan = Kaushan_Script({
 });
 
 export default function HemenBasla() {
+  const router = useRouter();
   const totalSteps = 5;
   const formTitle = [
     "Seni Tanıyalım",
@@ -87,7 +88,7 @@ export default function HemenBasla() {
           summary: "",
         });
         setStep(1);
-        redirect("/admin/interview");
+        router.push("/admin/interview");
       } else {
         toast.error(" Veri kaydedilirken hata oluştu!");
       }
@@ -241,11 +242,10 @@ export default function HemenBasla() {
             {skillOptions.map((skill) => (
               <label
                 key={skill}
-                className={`flex items-center gap-2 p-2 rounded-md border cursor-pointer transition-all ${
-                  formData.skills.includes(skill)
+                className={`flex items-center gap-2 p-2 rounded-md border cursor-pointer transition-all ${formData.skills.includes(skill)
                     ? "bg-green-500/10 border-green-500"
                     : "border-gray-400/40 hover:border-black/60"
-                }`}
+                  }`}
               >
                 <Input
                   type="checkbox"
@@ -287,13 +287,12 @@ export default function HemenBasla() {
           return (
             <div
               key={index}
-              className={`relative z-10 w-12 h-12 flex items-center justify-center rounded-full text-lg font-semibold border-2 transition-all duration-300 ${
-                isCompleted
+              className={`relative z-10 w-12 h-12 flex items-center justify-center rounded-full text-lg font-semibold border-2 transition-all duration-300 ${isCompleted
                   ? "bg-green-500 text-white border-green-500"
                   : isActive
-                  ? "bg-white text-black border-black"
-                  : "bg-black text-white border-black"
-              }`}
+                    ? "bg-white text-black border-black"
+                    : "bg-black text-white border-black"
+                }`}
             >
               {isCompleted ? <Check className="w-6 h-6" /> : index}
             </div>
@@ -311,11 +310,10 @@ export default function HemenBasla() {
         <button
           onClick={prevStep}
           disabled={step === 1}
-          className={`px-6 py-2 rounded-lg transition-all ${
-            step === 1
+          className={`px-6 py-2 rounded-lg transition-all ${step === 1
               ? "bg-gray-300 text-gray-500 cursor-not-allowed"
               : "bg-gray-800 text-white hover:bg-black"
-          }`}
+            }`}
         >
           Geri
         </button>

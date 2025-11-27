@@ -5,14 +5,21 @@ import { toast } from "sonner";
 
 export function useAudioStreamer() {
   const [isRecording, setIsRecording] = useState(false);
+  const isRecordingRef = useRef(false); // closure için ref kullan
   const recorderRef = useRef<MediaRecorder | null>(null);
   const sessionIdRef = useRef<string | null>(null);
+  const questionIndexRef = useRef<number>(0); // soru indexi
   const chunksRef = useRef<Blob[]>([]);
   const timerRef = useRef<any>(null);
 
-  const start = async (sessionId: string) => {
-    console.log("[audio] start called", sessionId);
+  const setQuestionIndex = (index: number) => {
+    questionIndexRef.current = index;
+  };
+
+  const start = async (sessionId: string, questionIndex: number = 0) => {
+    console.log("[audio] start called", sessionId, "question:", questionIndex);
     sessionIdRef.current = sessionId;
+    questionIndexRef.current = questionIndex;
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -22,23 +29,25 @@ export function useAudioStreamer() {
 
       const recorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
 
-      // Recording chunk
+      //recording chunk
       recorder.ondataavailable = (e) => {
         if (e.data.size > 0) chunksRef.current.push(e.data);
       };
 
       recorder.onstop = async () => {
-        // Chunk'ları tam bir WebM dosyası yap
+        //chunkları tam bir WebM dosyası yap
         const completeBlob = new Blob(chunksRef.current, { type: "audio/webm" });
         chunksRef.current = [];
 
         const form = new FormData();
         form.append("audio", completeBlob, "audio.webm");
         form.append("sessionId", sessionIdRef.current!);
+        form.append("questionIndex", String(questionIndexRef.current));
 
         console.log("[audio] sending chunk", {
           size: completeBlob.size,
           sessionId: sessionIdRef.current,
+          questionIndex: questionIndexRef.current,
         });
 
         try {
@@ -51,8 +60,8 @@ export function useAudioStreamer() {
           console.error("[audio] fetch error", e);
         }
 
-        // 15 sn sonra tekrar kaydı başlat
-        if (isRecording) {
+        //15 sn sonra tekrar kaydı başlat
+        if (isRecordingRef.current) {
           recorder.start();
           scheduleStop();
         }
@@ -61,6 +70,7 @@ export function useAudioStreamer() {
       recorderRef.current = recorder;
       recorder.start();
       scheduleStop();
+      isRecordingRef.current = true;
       setIsRecording(true);
     } catch (e) {
       console.error("[audio] getUserMedia error", e);
@@ -76,6 +86,7 @@ export function useAudioStreamer() {
   };
 
   const stop = () => {
+    isRecordingRef.current = false;
     setIsRecording(false);
     clearTimeout(timerRef.current);
 
@@ -90,5 +101,5 @@ export function useAudioStreamer() {
     }
   };
 
-  return { isRecording, start, stop };
+  return { isRecording, start, stop, setQuestionIndex };
 }

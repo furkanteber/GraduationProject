@@ -22,6 +22,36 @@ const INTERVIEW_PRESETS = [
     title: "Backend Mülakatı",
     description: "API tasarımı, veritabanı ve ölçeklenebilirlik soruları.",
   },
+  {
+    id: "analitik",
+    title: "Analitik Düşünme Mülakatı",
+    description: "Soyut düşünme ve problem çözme bakış açısı odaklı sorular.",
+  },
+  {
+    id: "python",
+    title: "Python Mülakatı",
+    description: "Python, OOP, veri yapıları ve hata ayıklama soruları.",
+  },
+  {
+    id: "flutter",
+    title: "Flutter Mülakatı",
+    description: "Widget ağacı, state management ve performans soruları.",
+  },
+  {
+    id: "react",
+    title: "React Mülakatı",
+    description: "React component yapısı, hooks ve performans soruları.",
+  },
+  {
+    id: "csharp",
+    title: "C# Mülakatı",
+    description: "C#, .NET, OOP ve asenkron programlama soruları.",
+  },
+  {
+    id: "web",
+    title: "Web Geliştirme Mülakatı",
+    description: "HTTP, tarayıcı, HTML/CSS/JS ve tam yığın web geliştirme soruları.",
+  },
 ];
 
 export default function Dashboard() {

@@ -77,6 +77,17 @@ export default function Analyses() {
   const [loading, setLoading] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState<string | null>(null);
 
+  const sortedSessions = useMemo(() => {
+    if (!items.length) return [] as SessionResult[];
+
+    return [...items].sort((a, b) => {
+      const da = a.created_at ? new Date(a.created_at).getTime() : 0;
+      const db = b.created_at ? new Date(b.created_at).getTime() : 0;
+      // Yeni tarih en üstte olsun (azalan sıralama)
+      return db - da;
+    });
+  }, [items]);
+
   useEffect(() => {
     const fetchResults = async () => {
       try {
@@ -100,10 +111,10 @@ export default function Analyses() {
   }, []);
 
   useEffect(() => {
-    if (items.length && !selectedSessionId) {
-      setSelectedSessionId(items[0].sessionId);
+    if (sortedSessions.length && !selectedSessionId) {
+      setSelectedSessionId(sortedSessions[0].sessionId);
     }
-  }, [items, selectedSessionId]);
+  }, [sortedSessions, selectedSessionId]);
 
   const byDate = useMemo(() => {
     const map = new Map<
@@ -248,7 +259,7 @@ export default function Analyses() {
               <SelectValue placeholder="Oturum seçin" />
             </SelectTrigger>
             <SelectContent>
-              {items.map((item) => {
+              {sortedSessions.map((item) => {
                 const createdLabel = item.created_at
                   ? new Date(item.created_at).toLocaleString("tr-TR")
                   : "Tarih yok";

@@ -3,8 +3,7 @@ from datetime import datetime
 import json
 import re
 
-# gemini çeviri servisini import et
-from app.services.translate_service import translate_to_turkish
+from services.translate_service import translate_to_turkish
 PHI3_MODEL = "phi3-gguf/Phi-3-mini-4k-instruct-q4_K_M.gguf"
 
 print("Phi-3 yükleniyor...")
@@ -84,6 +83,43 @@ Rules:
 
     return result
 
+def generate_interview_question_answer(question):
+    english_prompt = f"""
+Provide a professional-level answer to this interview question.
+Question: {question}
+Rules:
+- Provide ONLY an English answer as output.
+- Answers must be realistic and accurate.
+- If a code snippet is requested, you may write one.
+"""
+    eng_raw = phi3(
+        english_prompt,
+        max_tokens=1300,
+        temperature=0.9
+    )["choices"][0]["text"].strip()
+
+    print("\n RAW İngilizce çıktı:")
+    print(eng_raw)
+    english_question = clean_english_question(eng_raw)
+
+    print("\nTemizlenmiş İngilizce cevap:")
+    print(english_question)
+
+    turkish_question = translate_to_turkish(english_question)
+
+    print("\n🇹🇷 Türkçe çeviri:")
+    print(turkish_question)
+
+    result = {
+        "answer": turkish_question
+    }
+
+    with open("interview_question_answer.json", "w", encoding="utf-8") as f:
+        json.dump(result, f, ensure_ascii=False, indent=4)
+
+    print("\n Kaydedildi: interview_question_answer.json")
+    return result
+
 
 if __name__ == "__main__":
-    generate_interview_question("Flutter")
+    generate_interview_question_answer("How would you approach optimizing a legacy codebase to improve its performance and maintainability, and what specific coding patterns or refactoring techniques would you implement, using a real-world example from a project you have worked on?")

@@ -11,11 +11,11 @@ class LoginRequest(BaseModel):
 
 @router.post("/login")
 async def login(payload: LoginRequest):
-    # Basit/hardcoded kontrol: gerçek senaryoda burada kullanıcı veritabanı sorgulanır.
+    # validasyon kontrolü
     if not payload.email or not payload.password:
         raise HTTPException(status_code=400, detail="Email ve şifre zorunlu")
 
-    # Örnek: tek bir demo kullanıcı
+    #tek bir demo kullanıcı
     if payload.email != "admin@tebersoft.com" or payload.password != "admin123":
         raise HTTPException(status_code=401, detail="Geçersiz email veya şifre")
     return {

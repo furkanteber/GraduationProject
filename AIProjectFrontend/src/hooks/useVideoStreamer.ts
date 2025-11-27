@@ -8,10 +8,16 @@ export function useVideoStreamer() {
   const [isStreaming, setIsStreaming] = useState(false);
   const intervalRef = useRef<any>(null);
   const sessionIdRef = useRef<string | null>(null);
+  const questionIndexRef = useRef<number>(0);
 
-  const start = async (sessionId: string) => {
-    console.log("[video] start called", sessionId);
+  const setQuestionIndex = (index: number) => {
+    questionIndexRef.current = index;
+  };
+
+  const start = async (sessionId: string, questionIndex: number = 0) => {
+    console.log("[video] start called", sessionId, "question:", questionIndex);
     sessionIdRef.current = sessionId;
+    questionIndexRef.current = questionIndex;
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -67,10 +73,12 @@ export function useVideoStreamer() {
     const formData = new FormData();
     formData.append("image", blob, "frame.jpg");
     formData.append("sessionId", sessionIdRef.current);
+    formData.append("questionIndex", String(questionIndexRef.current));
 
     console.log("[video] sending frame", {
       size: blob.size,
       sessionId: sessionIdRef.current,
+      questionIndex: questionIndexRef.current,
     });
 
     try {
@@ -94,5 +102,5 @@ export function useVideoStreamer() {
     }
   };
 
-  return { videoRef, isStreaming, start, stop };
+  return { videoRef, isStreaming, start, stop, setQuestionIndex };
 }

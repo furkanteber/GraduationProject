@@ -43,7 +43,7 @@ def analyze_texts(texts: List[str]) -> Dict[str, Any]:
     except Exception:
         pass
 
-    # Word2Vec (küçük, session içi model)
+    # Word2Vec
     w2v_dim = None
     try:
         sentences = [t.split() for t in texts]

@@ -21,6 +21,7 @@ type Props = {
   onRecordingChange?: (isRecording: boolean) => void;
   shouldStopRecording?: boolean;
   onResult?: (result: any) => void;
+  questionIndex?: number;
 };
 
 export default function AudioVideoRecorder({
@@ -31,14 +32,21 @@ export default function AudioVideoRecorder({
   onRecordingChange,
   shouldStopRecording,
   onResult,
+  questionIndex = 0,
 }: Props) {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [result, setResult] = useState<any>(null);
   const [isRecording, setIsRecording] = useState(false);
   const hasShownAutoStartToast = useRef(false);
 
-  const { start: startAudio, stop: stopAudio } = useAudioStreamer();
-  const { videoRef, start: startVideo, stop: stopVideo } = useVideoStreamer();
+  const { start: startAudio, stop: stopAudio, setQuestionIndex: setAudioQuestionIndex } = useAudioStreamer();
+  const { videoRef, start: startVideo, stop: stopVideo, setQuestionIndex: setVideoQuestionIndex } = useVideoStreamer();
+
+  // questionIndex değiştiğinde hook'lara bildir
+  useEffect(() => {
+    setAudioQuestionIndex(questionIndex);
+    setVideoQuestionIndex(questionIndex);
+  }, [questionIndex]);
 
   const effectiveAutoStartDelay = autoStartDelayMs ?? 3000;
 
@@ -52,8 +60,8 @@ export default function AudioVideoRecorder({
 
     // Başlangıç için küçük delay
     setTimeout(() => {
-      startAudio(id);
-      startVideo(id);
+      startAudio(id, questionIndex);
+      startVideo(id, questionIndex);
       setIsRecording(true);
       if (onRecordingChange) {
         onRecordingChange(true);

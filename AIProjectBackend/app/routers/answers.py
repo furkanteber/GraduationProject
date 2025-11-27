@@ -34,7 +34,7 @@ async def save_answer(payload: AnswerPayload):
     try:
         result = db["answers"].insert_one(doc)
 
-        # İlgili interview kaydına bu soruyu ekle
+        #ilgili interview kaydına bu soruyu ekle
         if payload.sessionId:
             try:
                 interviews_col = db["interviews"]
@@ -44,7 +44,7 @@ async def save_answer(payload: AnswerPayload):
                 answer_text = payload.answer or ""
                 num_tokens = len(str(answer_text).split())
 
-                # Basit bir soru skoru: süre ve metin uzunluğunu 0-100 arası normalize et
+                #bir soru skoru süre ve metin uzunluğunu 0-100 arası normalize et
                 try:
                     duration_norm = min(max(float(duration_seconds), 0.0) / 120.0, 1.0)
                 except Exception:

@@ -156,6 +156,144 @@ export default function Interview() {
                 "Adayın performans, okunabilirlik ve bakım maliyeti arasındaki dengeyi örneklerle açıklaması beklenir.",
             },
           ],
+          analitik: [
+            {
+              topic: "Analitik Düşünme",
+              question:
+                "Sana verilen karmaşık bir problemi küçük parçalara ayırarak çözme sürecini adım adım nasıl kurgularsın? Somut bir örnek üzerinden açıklar mısın?",
+              answer:
+                "Adayın problemi tanımlama, varsayımları netleştirme, alt problemlere bölme, önceliklendirme ve deneme/ölçme adımlarını sistematik olarak anlatması beklenir.",
+            },
+            {
+              topic: "Soyut Düşünme",
+              question:
+                "Daha önce karşılaşmadığın bir problemle karşılaştığında, geçmiş tecrübelerini ve soyut kavramları kullanarak nasıl bir çözüm yolu üretirsin?",
+              answer:
+                "Adayın benzer örüntüleri (pattern), prensipleri ve zihinsel modelleri kullanarak yeni probleme yaklaşımını açıklaması beklenir.",
+            },
+            {
+              topic: "Probleme Bakış Açısı",
+              question:
+                "Bir ekiple birlikte çalışırken, aynı probleme farklı bakış açıları getirmek için nasıl bir ortam oluşturur ve bu fikirleri nasıl değerlendirirsin?",
+              answer:
+                "Adayın farklı bakış açılarını teşvik etme, tartışma kültürü, varsayımları sorgulama ve karar alma süreçlerini anlatması beklenir.",
+            },
+          ],
+          csharp: [
+            {
+              topic: "C# Mülakatı",
+              question:
+                "C# dilinde interface ve abstract class arasındaki temel farklar nelerdir ve hangi durumlarda hangisini tercih edersin?",
+              answer:
+                "Adayın çoklu kalıtım, sözleşme tanımlama, varsayılan implementasyonlar ve genişletilebilirlik açısından interface vs abstract class farklarını açıklaması beklenir.",
+            },
+            {
+              topic: "C# Mülakatı",
+              question:
+                ".NET'te async/await anahtar kelimeleri nasıl çalışır? Bir I/O-bound işlemi yönetirken nelere dikkat edersin?",
+              answer:
+                "Adayın Task tabanlı asenkron model, deadlock riskleri, ConfigureAwait ve exception yönetimi gibi konulara değinmesi beklenir.",
+            },
+            {
+              topic: "C# Mülakatı",
+              question:
+                "Entity Framework veya benzeri bir ORM kullanırken performans ve veri tutarlılığı açısından hangi tuzaklara dikkat edersin?",
+              answer:
+                "Adayın N+1 query problemi, lazy vs eager loading, transaction yönetimi ve migration stratejileri gibi konuları anlatması beklenir.",
+            },
+          ],
+          web: [
+            {
+              topic: "Web Geliştirme Mülakatı",
+              question:
+                "Bir web uygulamasında istemci (client) ve sunucu (server) tarafı arasındaki temel sorumlulukları nasıl ayırırsın? Örnek bir mimari üzerinden açıklar mısın?",
+              answer:
+                "Adayın presentation vs API katmanlarını, auth/authorization, validation ve iş kurallarının nerede konumlanacağını açıklaması beklenir.",
+            },
+            {
+              topic: "Web Geliştirme Mülakatı",
+              question:
+                "HTTP'de cache mekanizmalarını (ETag, Last-Modified, Cache-Control) kullanarak bir sayfanın performansını nasıl iyileştirirsin?",
+              answer:
+                "Adayın tarayıcı cache, CDN, invalidation stratejileri ve doğru header kullanımını anlatması beklenir.",
+            },
+            {
+              topic: "Web Geliştirme Mülakatı",
+              question:
+                "Modern bir web uygulamasında güvenlik açısından dikkat ettiğin başlıca konular nelerdir? (XSS, CSRF, SQL Injection vb.)",
+              answer:
+                "Adayın input validation, output encoding, token/tabanlı auth, CSRF koruması ve hazırlıklı sorgular gibi konuları örneklerle açıklaması beklenir.",
+            },
+          ],
+          python: [
+            {
+              topic: "Python Mülakatı",
+              question:
+                "Python'da list ve tuple arasındaki temel farklar nelerdir ve hangi senaryolarda hangisini tercih edersin?",
+              answer:
+                "Adayın değiştirilebilirlik (mutability), performans ve veri bütünlüğü açısından list vs tuple farklarını anlatması ve örnek kullanım senaryoları vermesi beklenir.",
+            },
+            {
+              topic: "Python Mülakatı",
+              question:
+                "Context manager nedir, 'with' ifadesi nasıl çalışır ve kendi context manager'ını nasıl yazarsın?",
+              answer:
+                "Adayın __enter__ / __exit__ metodlarını, kaynak yönetimini (dosya, bağlantı vb.) ve try/finally ile ilişkisini açıklaması beklenir.",
+            },
+            {
+              topic: "Python Mülakatı",
+              question:
+                "Python'da list comprehension ve generator expression arasındaki farkları performans ve bellek kullanımı açısından açıklayabilir misin?",
+              answer:
+                "Adayın eager vs lazy değerlendirme farkını, bellek kullanımını ve hangi durumda hangisinin tercih edilmesi gerektiğini anlatması beklenir.",
+            },
+          ],
+          flutter: [
+            {
+              topic: "Flutter Mülakatı",
+              question:
+                "Flutter'da widget ağacı (widget tree) nedir ve build metodu ne zaman tekrar çalışır?",
+              answer:
+                "Adayın immutable widget yapısını, element tree / render tree kavramlarını ve rebuild tetikleyen durumları açıklaması beklenir.",
+            },
+            {
+              topic: "Flutter Mülakatı",
+              question:
+                "StatefulWidget ile StatelessWidget arasındaki fark nedir ve state yönetimi için hangi durumlarda harici paketler (Provider, Riverpod vb.) kullanırsın?",
+              answer:
+                "Adayın yerel state ile global/app-level state ayrımını, yeniden kullanılabilirlik ve test edilebilirlik açısından tercihlerini anlatması beklenir.",
+            },
+            {
+              topic: "Flutter Mülakatı",
+              question:
+                "Flutter uygulamasında performansı artırmak için hangi optimizasyon tekniklerini kullanırsın?",
+              answer:
+                "Adayın const widget kullanımı, unnecessary rebuild'lerin azaltılması, listelerde key kullanımı ve lazy render tekniklerinden bahsetmesi beklenir.",
+            },
+          ],
+          react: [
+            {
+              topic: "React Mülakatı",
+              question:
+                "React'te component lifecycle'ı (özellikle function component + hooks) nasıl yönetirsin? useEffect'i hangi durumlarda ve nasıl kullanırsın?",
+              answer:
+                "Adayın dependency array, cleanup fonksiyonları, effect türleri ve yanlış kullanım örnekleri (sonsuz render döngüleri vb.) hakkında konuşması beklenir.",
+            },
+            {
+              topic: "React Mülakatı",
+              question:
+                "React uygulamasında performansı iyileştirmek için hangi teknikleri kullanırsın? useMemo, useCallback ve React.memo'yu nasıl konumlandırırsın?",
+              answer:
+                "Adayın render optimizasyonu, yeniden oluşturulan fonksiyonlar ve referans eşitliği konularına değinmesi beklenir.",
+            },
+            {
+              topic: "React Mülakatı",
+              question:
+                "Global state yönetimi için hangi yaklaşımları (Context API, Redux, Zustand vb.) tercih edersin ve neden?",
+              answer:
+                "Adayın uygulama ölçeği, karmaşıklık, boilerplate miktarı ve geliştirici deneyimi açısından farklı state management çözümlerini kıyaslaması beklenir.",
+            },
+          ],
         };
 
         if (presetMap[preset]) {
@@ -191,11 +329,25 @@ export default function Interview() {
           fast_mode: false,
         };
 
-        if (preset === "frontend") {
+        if (!preset || preset === "genel-yazilim") {
+          requestBody.topic = "Genel Yazılım";
+        } else if (preset === "frontend") {
           requestBody.topic = "Frontend";
         } else if (preset === "backend") {
           requestBody.topic = "Backend";
-        } else if (preset === "genel-yazilim") {
+        } else if (preset === "python") {
+          requestBody.topic = "Python";
+        } else if (preset === "flutter") {
+          requestBody.topic = "Flutter";
+        } else if (preset === "react") {
+          requestBody.topic = "React";
+        } else if (preset === "analitik") {
+          requestBody.topic = "Analitik Düşünme";
+        } else if (preset === "csharp") {
+          requestBody.topic = "C#";
+        } else if (preset === "web") {
+          requestBody.topic = "Web Geliştirme";
+        } else {
           requestBody.topic = "Genel Yazılım";
         }
 
@@ -493,6 +645,25 @@ export default function Interview() {
                     }
 
                     toast.success("Cevabınız kaydedildi.");
+
+                    // Mevcut sorunun ses/video kayıtlarını analiz et
+                    try {
+                      await fetch(`http://127.0.0.1:8000/interviews/${sessionId}/question/analyze`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          questionIndex: currentIndex,
+                          questionText: currentQuestion.question,
+                          expectedAnswer: currentQuestion.answer,
+                          userAnswer: textAnswer,
+                          durationSeconds: elapsedSeconds,
+                        }),
+                      });
+                      console.log("[interview] Soru analizi tamamlandı:", currentIndex);
+                    } catch (analyzeErr) {
+                      console.error("[interview] Soru analizi hatası:", analyzeErr);
+                    }
+
                     setTextAnswer("");
                     const isLastQuestion = currentIndex >= questions.length - 1;
 
@@ -530,6 +701,7 @@ export default function Interview() {
             onRecordingChange={(recording) => setIsRecording(recording)}
             shouldStopRecording={isInterviewFinished}
             onResult={(res) => setFinalResult(res)}
+            questionIndex={currentIndex}
           />
         </div>
 

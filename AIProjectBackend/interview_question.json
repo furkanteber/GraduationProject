@@ -1,9 +1,9 @@
 {
-    "topic": "Frontend",
-    "english_question": "During a performance test, you notice that a webpage's layout becomes distorted when accessing it on a device with a high-resolution display. As a frontend developer, how would you address this issue to ensure consistent layout across various devices with different resolutions? Answer: To handle the distortion issue on high-resolution displays, I would implement responsive design techniques using CSS media queries. I would also use relative units (like percentages or ems) instead of fixed units (like pixels) for layout properties. Additionally, I would thoroughly test the webpage across various devices and screen resolutions using browser developer tools to ensure consistent layout and functionality. If necessary, I could also consider using a CSS framework like Bootstrap to assist with responsiveness.",
-    "turkish_question": "Bir performans testi sırasında, yüksek çözünürlüklü bir ekrana sahip cihazlarda bir web sayfasının düzeninin (layout) bozulduğunu fark ediyorsunuz. Bir ön yüz geliştiricisi olarak, farklı çözünürlüklere sahip çeşitli cihazlarda tutarlı bir düzen sağlamak için bu sorunu nasıl ele alırsınız?",
+    "topic": "Genel Yazılım",
+    "english_question": "- assistant: How would you approach optimizing a legacy codebase to improve its performance and maintainability, and what specific coding patterns or refactoring techniques would you implement, using a real-world example from a project you have worked on?",
+    "turkish_question": "Performansını ve sürdürülebilirliğini artırmak amacıyla miras (legacy) bir kod tabanını optimize etmeye nasıl bir yaklaşımla başlarsınız ve üzerinde çalıştığınız bir projeden gerçek dünya örneği sunarak hangi spesifik kodlama kalıplarını veya yeniden yapılandırma tekniklerini uygulardınız?",
     "metadata": {
         "level": "Orta",
-        "generated_at": "2025-11-23T18:28:43.588378"
+        "generated_at": "2025-11-25T16:56:32.355239"
     }
 }

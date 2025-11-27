@@ -1,7 +1,0 @@
-{
-    "topic": "Flutter & Firebase",
-    "level": "Senior",
-    "english_question": "How would you optimize data retrieval and caching strategies in Flutter with Firebase to ensure efficient and responsive app performance?",
-    "turkish_question": "Optimizing data retrieval and caching strategies in Flutter with Firebase involves several key approaches to ensure efficient and responsive app performance. Here are some strategies to consider:\n\n1. Use Firebase Cloud Firestore's built-in caching: Firestore automatically caches data in the client's cache, which helps reduce the number of network requests and improve performance. Make sure to take advantage of this feature by using Firestore's built-in querying and caching capabilities.\n\n2. Implement pagination: When retrieving large datasets, use pagination to fetch",
-    "generated_at": "2025-11-23T12:35:21.261011"
-}
